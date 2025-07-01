@@ -1,16 +1,15 @@
 import datetime
 import os
-
 import pytest
-from selenium import webdriver
-
+from utils.driver_factory import Driverfactory
 from utils.logger import get_logger
 
 
 @pytest.fixture(scope="session")
 def driver():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
+    driver = Driverfactory.get_instance().get_driver()
+    # already maximized in Driverfactory class
+    #driver.maximize_window()
     yield driver
     driver.quit()
 
