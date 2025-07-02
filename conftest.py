@@ -6,6 +6,8 @@ Includes WebDriver setup, teardown, and screenshot capture on test failure.
 import datetime
 import os
 import pytest
+import pytest_html.extras
+
 from utils.driver_factory import Driverfactory
 from utils.logger import get_logger
 
@@ -37,3 +39,10 @@ def pytest_runtest_makereport(item):
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = os.path.join(screenshot_dir, f"{timestamp}.png")
             driver_fixture.save_screenshot(filename)
+
+            #Include in html report
+            if hasattr(rep, "extra"):
+                rep.extra.append(pytest_html.extras.image(filename))
+
+            else:
+                rep.extra = [pytest_html.extras.image(filename)]
