@@ -27,5 +27,5 @@ def pytest_runtest_makereport(item):
             screenshot_dir = os.path.join(os.getcwd(), "screenshots")
             os.makedirs(screenshot_dir, exist_ok=True)
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-            filname = os.path.join(screenshot_dir, f"{timestamp}.png")
-            driver_fixture.save_screenshot(filname)
+            filename = os.path.join(screenshot_dir, f"{timestamp}.png")
+            driver_fixture.save_screenshot(filename)
