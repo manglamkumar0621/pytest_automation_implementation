@@ -1,6 +1,11 @@
+"""Generates log"""
 import logging
 
 def get_logger():
+    """
+    Create logger with default configuration and add level.
+    Set format for log using file handler
+    """
     logger = logging.getLogger("AmazonTest")
     if not logger.hasHandlers():
         logger.setLevel(logging.DEBUG)

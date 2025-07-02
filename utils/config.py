@@ -1,3 +1,4 @@
+"""Static configuration values for Amazon login and product"""
 BASE_URL = "https://www.amazon.in"
 EMAIL = "<EMAIL>"
 PASSWORD = "<PASSWORD>"
