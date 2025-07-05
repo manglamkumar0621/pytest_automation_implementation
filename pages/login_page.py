@@ -7,13 +7,12 @@ from utils.config import BASE_URL
 
 class LoginPage(BasePage):
     """Implements the login page methods."""
-    __EMAIL = (By.ID, "ap_email")
-    __PASSWORD = (By.ID, "ap_password")
-    __SIGN_IN = (By.ID, "signInSubmit")
-    __CONTINUE = (By.ID, "continue")
+    __EMAIL = (By.ID, "user-name")
+    __PASSWORD = (By.ID, "password")
+    __SIGN_IN = (By.ID, "login-button")
 
     def load_login_page(self):
-        """Loads the Amazon login page."""
+        """Loads the Saucedemo login page."""
         self._driver.get(BASE_URL)
         return self
 
@@ -29,13 +28,8 @@ class LoginPage(BasePage):
         """clicks the sign-in button"""
         self.click(self.__SIGN_IN)
 
-    def click_continue(self):
-        """clicks the continue button"""
-        return self.click(self.__CONTINUE)
-
     def login(self, email, password):
         """Complete the login process using email and password."""
         return (self.enter_email(email)
-                .click_continue()
                 .enter_password(password)
                 .click_sign_in())

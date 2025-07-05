@@ -9,7 +9,7 @@ import pytest
 import pytest_html.extras
 
 from utils.driver_factory import Driverfactory
-from utils.logger import get_logger
+from utils.logger import LoggerSingleton
 
 
 @pytest.fixture(scope="session")
@@ -24,7 +24,7 @@ def driver():
 @pytest.fixture(scope="session")
 def logger():
     """Fixture to return the logger instance."""
-    return get_logger()
+    return LoggerSingleton.get_logger()
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):

@@ -1,4 +1,4 @@
-"""SearchPage encapsulates search and add-to-cart actions"""
+"""SearchPage encapsulates add-to-cart and checkout actions"""
 import time
 
 from selenium.webdriver.common.by import By
@@ -7,36 +7,27 @@ from pages.base_page import BasePage
 
 
 class SearchPage(BasePage):
-    """Implements search and add-to-cart actions"""
-    __SEARCH_BOX = (By.ID, 'twotabsearchtextbox')
-    __SEARCH_BTN = (By.ID, 'nav-search-submit-button')
-    __FIRST_PRODUCT = (By.CSS_SELECTOR, "div[data-index='1'] h2 a")
-    __ADD_TO_CART = (By.ID, 'add-to-cart-button')
+    """Implements add-to-cart and checkout actions"""
+    __FIRST_PRODUCT = (By.ID, "add-to-cart-sauce-labs-backpack")
+    __GO_TO_CART = (By.CLASS_NAME, 'shopping_cart_link')
+    __CHECKOUT = (By.ID, 'checkout')
 
-    def enter_search_term(self, product):
-        """Enter the search term"""
-        return self.send_keys(self.__SEARCH_BOX, product)
-
-    def click_search(self):
-        """Click search button"""
-        return self.click(self.__SEARCH_BTN)
-
-    def click_first_product(self):
+    def add_first_product(self):
         """Select the first product on the search page"""
         time.sleep(3)
         self.click(self.__FIRST_PRODUCT)
-        self._driver.switch_to.window(self._driver.window_handles[1])
+        #self._driver.switch_to.window(self._driver.window_handles[1])
         return self
 
-    def click_add_to_cart(self):
+    def go_to_cart(self):
         """Click on the add-to-cart button"""
         time.sleep(2)
-        return self.click(self.__ADD_TO_CART)
+        return self.click(self.__GO_TO_CART)
 
-    def search_product(self, product):
+    def checkout(self):
         """Search for product and open first result."""
-        return self.enter_search_term(product).click_search().click_first_product()
+        return self.click(self.__CHECKOUT)
 
-    def add_to_cart(self):
+    def add_to_cart_and_checkout(self):
         """Click on add to cart."""
-        return self.click_add_to_cart()
+        return self.add_first_product().go_to_cart().checkout()
