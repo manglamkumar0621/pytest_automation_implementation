@@ -4,18 +4,18 @@ pipeline{
         pollSCM('* * * * *')
     }
     stages{
-        stages('Checkout'){
+        stage('Checkout'){
             steps{
                 echo 'Initializing Git checkout'
                 git 'https://github.com/manglamkumar0621/pytest_automation_implementation.git'
             }
         }
-        stages('build'){
+        stage('build'){
             steps{
                 echo 'Building...'
             }
         }
-        stages('Testing'){
+        stage('Testing'){
             steps{
                 echo 'Running tests..'
             }
