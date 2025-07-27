@@ -17,7 +17,8 @@ pipeline{
         }
         stage('Testing'){
             steps{
-                echo 'Running tests..'
+                echo 'Running tests....'
+                echo 'Testing commit webhook'
             }
         }
     }
