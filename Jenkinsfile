@@ -21,5 +21,15 @@ pipeline{
                 echo 'Testing commit webhook'
             }
         }
+        stage('Build and Test') {
+            steps {
+                script {
+                    // The test runner will be a separate Docker image
+                    sh 'docker build -t my-test-image .'
+                    // Execute the tests inside the container
+                    sh 'docker run --rm my-test-image'
+                }
+            }
+        }
     }
 }
